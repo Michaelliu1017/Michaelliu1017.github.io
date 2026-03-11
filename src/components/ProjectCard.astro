@@ -1,0 +1,83 @@
+---
+interface Props {
+  project: {
+    slug: string;
+    data: {
+      title: string;
+      titleZh?: string;
+      description: string;
+      descriptionZh?: string;
+      category: string;
+      tags: string[];
+      metric?: string;
+      metricLabel?: string;
+    };
+  };
+  maxTags?: number;
+  showReadMore?: boolean;
+  revealClass?: string;
+  extraClass?: string;
+}
+
+const categoryLabels: Record<string, string> = {
+  'research': 'Research', 'ml-ai': 'ML / AI', 'full-stack': 'Full-Stack',
+  'devops': 'DevOps', 'open-source': 'Open Source', 'systems': 'Systems',
+};
+
+const catI18nKeys: Record<string, string> = {
+  'research': 'cat.research', 'ml-ai': 'cat.mlai', 'full-stack': 'cat.fullstack',
+  'devops': 'cat.devops', 'open-source': 'cat.opensource', 'systems': 'cat.systems',
+};
+
+const { project, maxTags = 4, showReadMore = false, revealClass = '', extraClass = '' } = Astro.props;
+const { title, titleZh, description, descriptionZh, category, tags, metric, metricLabel } = project.data;
+---
+
+<a
+  href={`/projects/${project.slug}`}
+  data-category={category}
+  class={`${revealClass} group card-neon-interactive flex flex-col ${extraClass}`.trim()}
+>
+  <div class="h-1 w-full rounded-t-xl bg-gradient-to-r from-neon-rose via-neon-violet to-neon-gold mb-4 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+  
+  <div class="flex items-start justify-between mb-3">
+    <span class="badge-neon text-[10px]" data-i18n={catI18nKeys[category]}>
+      {categoryLabels[category] || category}
+    </span>
+    {metric && (
+      <div class="text-right">
+        <span class="text-lg font-heading font-bold text-neon-rose">{metric}</span>
+        {metricLabel && <p class="text-[10px] text-muted">{metricLabel}</p>}
+      </div>
+    )}
+  </div>
+  
+  <h3
+    class="text-lg font-heading font-semibold text-text-bright mb-2 group-hover:text-neon-rose transition-colors"
+    data-en={title}
+    data-zh={titleZh || title}
+  >
+    {title}
+  </h3>
+  
+  <p
+    class="text-sm text-muted leading-relaxed mb-4 flex-grow"
+    data-en={description}
+    data-zh={descriptionZh || description}
+  >
+    {description}
+  </p>
+  
+  <div class={`flex flex-wrap gap-1.5 mt-auto ${showReadMore ? 'mb-3' : ''}`}>
+    {tags.slice(0, maxTags).map(tag => (
+      <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-muted-light">{tag}</span>
+    ))}
+  </div>
+
+  {showReadMore && (
+    <div class="flex items-center text-xs text-neon-rose/60 group-hover:text-neon-rose transition-colors font-mono">
+      <span data-i18n="proj.readmore">Read more</span>
+      <svg class="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+    </div>
+  )}
+</a>
