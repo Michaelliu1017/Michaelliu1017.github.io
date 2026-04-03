@@ -31,6 +31,8 @@ const experience = defineCollection({
     locationZh: z.string().optional(),
     startDate: z.string(),
     endDate: z.string(),
+    /** Full date range for Chinese UI, e.g. "2023 年6 月 – 2023 年8 月" */
+    dateZh: z.string().optional(),
     order: z.number(),
     bulletsZh: z.array(z.string()).optional(),
   }),

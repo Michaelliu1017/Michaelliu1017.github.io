@@ -89,7 +89,11 @@ const coursework = [
                       data-en={exp.data.role}
                       data-zh={exp.data.roleZh || exp.data.role}
                     >{exp.data.role}</h3>
-                    <span class="text-xs text-muted font-mono">{exp.data.startDate} — {exp.data.endDate}</span>
+                    <span
+                      class="text-xs text-muted font-mono"
+                      data-en={`${exp.data.startDate} — ${exp.data.endDate}`}
+                      data-zh={exp.data.dateZh ?? `${exp.data.startDate} — ${exp.data.endDate}`}
+                    >{exp.data.startDate} — {exp.data.endDate}</span>
                   </div>
                   <p
                     class="text-sm text-neon-rose/70"
