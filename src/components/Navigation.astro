@@ -1,4 +1,6 @@
 ---
+import digitOwl from '../assets/digitowl.png';
+
 const navItems = [
   { name: 'Home',     href: '/',        i18n: 'nav.home'     },
   { name: 'About',    href: '/about',   i18n: 'nav.about'    },
@@ -14,7 +16,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <a href="/" class="flex items-center hover:opacity-80 transition-opacity rounded-lg bg-black p-1">
-        <img src="/owl-logo.svg" alt="Logo" class="h-8 w-8 object-contain" />
+        <img src={digitOwl.src} alt="Logo" width={digitOwl.width} height={digitOwl.height} class="h-8 w-8 object-contain" />
       </a>
       
       <!-- Desktop Navigation -->
