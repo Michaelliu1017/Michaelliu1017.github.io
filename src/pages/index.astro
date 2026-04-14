@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+/** Hero avatar: change the import below to `../assets/profile2.png` to switch photos */
 import profilePhoto from '../assets/profile-photo.png';
 
 const allProjects = await getCollection('projects');
