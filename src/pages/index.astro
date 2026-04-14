@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import BrandLogo from '../components/BrandLogo.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import profilePhoto from '../assets/profile-photo.png';
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
@@ -56,8 +57,16 @@ const affiliations = [
       <div class="section-container relative z-10 text-center py-20">
         <div class="flex flex-col md:flex-row md:items-center md:justify-center md:gap-10 mb-6">
           <div class="animate-fade-in md:order-2 flex-shrink-0 mb-6 md:mb-0">
-            <div class="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-neon-rose/30 shadow-[0_0_20px_rgba(232,98,26,0.18)] mx-auto bg-surface flex items-center justify-center overflow-hidden">
-              <span class="text-5xl md:text-6xl font-heading font-bold text-gradient-neon select-none">GL</span>
+            <div class="w-36 h-36 md:w-44 md:h-44 rounded-2xl border-2 border-neon-rose/30 shadow-[0_0_20px_rgba(232,98,26,0.18)] mx-auto bg-surface overflow-hidden">
+              <img
+                src={profilePhoto.src}
+                alt="Guoliang Liu"
+                width={profilePhoto.width}
+                height={profilePhoto.height}
+                class="h-full w-full object-cover object-center"
+                loading="eager"
+                decoding="async"
+              />
             </div>
           </div>
           <div class="animate-fade-in md:text-left">
